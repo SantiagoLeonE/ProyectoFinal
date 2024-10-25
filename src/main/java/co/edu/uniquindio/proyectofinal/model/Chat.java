@@ -9,4 +9,20 @@ public class Chat {
 
     public Chat() {
     }
+
+    public List<Mensaje> getListMensajes() {
+        return listMensajes;
+    }
+
+    public void setListMensajes(List<Mensaje> listMensajes) {
+        this.listMensajes = listMensajes;
+    }
+
+    public List<Vendedor> getListVendedores() {
+        return listVendedores;
+    }
+
+    public void setListVendedores(List<Vendedor> listVendedores) {
+        this.listVendedores = listVendedores;
+    }
 }

@@ -10,4 +10,12 @@ public class Mensaje {
     public Mensaje(LocalDateTime hora) {
         this.hora = hora;
     }
+
+    public LocalDateTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalDateTime hora) {
+        this.hora = hora;
+    }
 }

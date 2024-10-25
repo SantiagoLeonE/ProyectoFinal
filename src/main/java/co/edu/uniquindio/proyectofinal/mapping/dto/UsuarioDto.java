@@ -1,4 +1,8 @@
 package co.edu.uniquindio.proyectofinal.mapping.dto;
 
-public class UsuarioDto {
+public record UsuarioDto(
+    String username,
+    String password
+) {
+
 }
