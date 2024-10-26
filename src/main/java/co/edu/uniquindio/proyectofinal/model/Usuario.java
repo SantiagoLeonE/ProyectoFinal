@@ -1,5 +1,7 @@
 package co.edu.uniquindio.proyectofinal.model;
 
+import co.edu.uniquindio.proyectofinal.model.builder.UsuarioBuilder;
+
 public class Usuario {
     public String username;
     public String password;
@@ -9,6 +11,10 @@ public class Usuario {
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public static UsuarioBuilder builder() {
+        return new UsuarioBuilder();
     }
 
     public String getUsername() {

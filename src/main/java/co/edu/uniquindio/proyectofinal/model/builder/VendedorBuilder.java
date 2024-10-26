@@ -32,4 +32,7 @@ public class VendedorBuilder {
         return new Vendedor(nombre, apellido, cedula, direccion);
     }
 
+    public Vendedor build() {
+        return new Vendedor(nombre, apellido, cedula, direccion);
+    }
 }
