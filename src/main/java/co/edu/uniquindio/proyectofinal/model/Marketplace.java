@@ -51,9 +51,92 @@ public class Marketplace implements ICrudUsuario {
         this.administrador = administrador;
     }
 
-    //Método booleano para indicar si se creó un usuario o ya existe
+
+    //------------------------------- CRUD USUARIO ----------------------------------------
+
+    /**
+     * Método booleano para verificar si se creó un Usuario
+     * @param newUsuario {Object} - Un objeto de tipo Usuario
+     * @return {boolean} - Verificación de creación
+     */
     @Override
-    public boolean crearUsuario() {
+    public boolean crearUsuario(Usuario newUsuario) {
+        if (newUsuario != null) {
+            getListUsuarios().add(newUsuario);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Método booleano para verificar si eliminó un Usuario
+     * @param username {String} - EL username del Usuario a eliminar
+     * @return {boolean} - Verificación de eliminación
+     */
+    @Override
+    public boolean eliminarUsuario(String username) {
+        for (Usuario usuario : getListUsuarios()) {
+            if (usuario.getUsername().equals(username)) {
+                getListUsuarios().remove(usuario);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Método booleano para verificar si se actualizó un Usuario
+     * @param username {String} - El Username del Usuario a modificar
+     * @param usuario {Object} - El objeto con los atributos de un Usuario a modificar
+     * @return {boolean} - Verificación de actualización
+     */
+    @Override
+    public boolean actualizarUsuario(String username, Usuario usuario) {
+
+        Usuario usuarioExistente = buscarUsuario(username);
+
+        if (usuarioExistente != null) {
+            usuarioExistente.setUsername(usuario.getUsername());
+            usuarioExistente.setPassword(usuario.getPassword());
+
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Método booleano para buscar un Usuario
+     * @param username {String} - El Username del Usuario a encontrar
+     * @return {Usuario} - El Usuario encontrado por su Username
+     */
+    @Override
+    public Usuario buscarUsuario(String username) {
+        for (Usuario usuario : getListUsuarios()) {
+            if (usuario.getUsername().equals(username)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Método booleano para verificar si un Usuario ya existe
+     * @param username {String} - El username del usuario ingresado
+     * @return {boolean} - Verificación de existencia
+     */
+    @Override
+    public boolean verificarUsuarioExistente(String username) {
+        Usuario usuarioExistente = null;
+        for (Usuario usuario : listUsuarios) {
+            if (usuario.getUsername().equals(username)) {
+                usuarioExistente = usuario;
+                break;
+            }
+        }
+
+        if (usuarioExistente != null) {
+            return true;
+        }
         return false;
     }
 }

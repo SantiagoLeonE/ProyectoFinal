@@ -1,6 +1,8 @@
 package co.edu.uniquindio.proyectofinal.model;
 
-public class Producto {
+import co.edu.uniquindio.proyectofinal.service.IPrototype;
+
+public class Producto implements IPrototype {
 
     public String nombre;
     public String categoria;
@@ -20,6 +22,23 @@ public class Producto {
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
+    }
+
+    /**
+     * Método Prototype para clonar un producto ya existente
+     * @return {Producto} - El mismo producto pero en diferente instancia
+     */
+    @Override
+    public IPrototype clone() {
+        Producto producto = null;
+
+        try {
+            producto = (Producto) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return producto;
     }
 
     /**
