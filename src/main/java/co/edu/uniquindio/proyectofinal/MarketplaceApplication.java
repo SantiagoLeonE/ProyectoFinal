@@ -1,20 +1,28 @@
 package co.edu.uniquindio.proyectofinal;
 
+import co.edu.uniquindio.proyectofinal.viewcontroller.UsuarioViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MarketplaceApplication extends Application {
+
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MarketplaceApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage loginStage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MarketplaceApplication.class.getResource("login.fxml"));
+        Parent root = fxmlLoader.load();
+        UsuarioViewController controller = fxmlLoader.getController();
+
+        controller.setPrimaryStage(loginStage);
+
+        Scene scene = new Scene(root);
+        loginStage.setTitle("Marketplace Login");
+        loginStage.setScene(scene);
+        loginStage.show();
     }
 
     public static void main(String[] args) {

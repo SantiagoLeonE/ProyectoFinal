@@ -1,11 +1,12 @@
 package co.edu.uniquindio.proyectofinal.model;
 
 import co.edu.uniquindio.proyectofinal.service.ICrudUsuario;
+import co.edu.uniquindio.proyectofinal.service.ICrudVendedor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Marketplace implements ICrudUsuario {
+public class Marketplace implements ICrudUsuario, ICrudVendedor {
 
     public String nombre;
     public List<Vendedor> listVendedores = new ArrayList<>();
@@ -139,4 +140,36 @@ public class Marketplace implements ICrudUsuario {
         }
         return false;
     }
+
+    @Override
+    public boolean crearVendedor(Vendedor newVendedor) {
+        if (newVendedor != null) {
+            getListVendedores().add(newVendedor);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean eliminarVendedor(String cedula) {
+        for (Vendedor vendedor : getListVendedores()) {
+            if (vendedor.getCedula().equals(cedula)) {
+                getListUsuarios().remove(vendedor);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean modificarVendedor(String cedula, Vendedor vendedor) {
+        return false;
+    }
+
+    @Override
+    public boolean verificarVendedorExistente(String cedula) {
+        return false;
+    }
+
+
 }
