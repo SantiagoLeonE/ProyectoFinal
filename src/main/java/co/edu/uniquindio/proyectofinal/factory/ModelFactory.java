@@ -34,30 +34,41 @@ public class ModelFactory implements IModelFactoryService {
     //Método para conectar la clase ModelFactory con la clase modelo Marketplace
     @Override
     public boolean agregarUsuario(UsuarioDto usuarioDto) {
-        Usuario newUsuario = mapper.usuarioDtoToUsuario(usuarioDto);
+        if(marketplace.verificarUsuarioExistente(usuarioDto.username())) {
 
-        getMarketplace().crearUsuario(newUsuario);
-        return true;
+            Usuario newUsuario = mapper.usuarioDtoToUsuario(usuarioDto);
+
+            getMarketplace().crearUsuario(newUsuario);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean eliminarUsuario(String cedula) {
+        return marketplace.eliminarUsuario(cedula);
+    }
+
+    @Override
+    public boolean actualizarUsuario(String username, UsuarioDto usuarioDto) {
+        if(!marketplace.verificarUsuarioExistente(username)) {
+
+            Usuario usuarioEncontrado = mapper.usuarioDtoToUsuario(usuarioDto);
+
+            marketplace.actualizarUsuario(username, usuarioEncontrado);
+            return true;
+        }
         return false;
     }
 
     @Override
-    public boolean actualizarUsuario(String cedula, UsuarioDto usuarioDto) {
-        return false;
-    }
-
-    @Override
-    public List<UsuarioDto> getUsuariosDto() {
-        return null;
+    public List<UsuarioDto> obtenerUsuariosDto() {
+        return mapper.getUsuariosDto(marketplace.getListUsuarios());
     }
 
     @Override
     public boolean buscarUsuario(String username) {
-        if(getMarketplace().verificarUsuarioExistente(username)) {
+        if(marketplace.verificarUsuarioExistente(username)) {
             return true;
         }
         return false;
@@ -65,32 +76,45 @@ public class ModelFactory implements IModelFactoryService {
 
     @Override
     public boolean agregarVendedor(VendedorDto vendedorDto) {
-        Vendedor newVendedor = mapper.vendedorDtoToVendedor(vendedorDto);
+        if(marketplace.verificarVendedorExistente(vendedorDto.cedula())) {
 
-        getMarketplace().crearVendedor(newVendedor);
-        return true;
+            Vendedor newVendedor = mapper.vendedorDtoToVendedor(vendedorDto);
+
+            getMarketplace().crearVendedor(newVendedor);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean eliminarVendedor(String cedula) {
-        return false;
+        return marketplace.eliminarVendedor(cedula);
     }
 
     @Override
     public boolean actualizarVendedor(String cedula, VendedorDto vendedorDto) {
+        if(!marketplace.verificarVendedorExistente(cedula)) {
+
+            Vendedor vendedorEncontrado = mapper.vendedorDtoToVendedor(vendedorDto);
+
+            marketplace.actualizarVendedor(cedula, vendedorEncontrado);
+            return true;
+        }
         return false;
     }
 
     @Override
-    public List<VendedorDto> getVendedoresDto() {
-        return null;
+    public List<VendedorDto> obtenerVendedoresDto() {
+        return mapper.getVendedoresDto(marketplace.getListVendedores());
     }
 
     @Override
     public boolean buscarVendedor(String cedula) {
+        if(marketplace.verificarVendedorExistente(cedula)) {
+            return true;
+        }
         return false;
     }
-
 
     public static Marketplace inicializarDatos() {
         Marketplace marketplace = new Marketplace();

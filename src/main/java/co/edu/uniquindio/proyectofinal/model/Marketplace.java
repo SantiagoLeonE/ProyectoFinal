@@ -154,7 +154,7 @@ public class Marketplace implements ICrudUsuario, ICrudVendedor {
     public boolean eliminarVendedor(String cedula) {
         for (Vendedor vendedor : getListVendedores()) {
             if (vendedor.getCedula().equals(cedula)) {
-                getListUsuarios().remove(vendedor);
+                getListVendedores().remove(vendedor);
                 return true;
             }
         }
@@ -162,12 +162,41 @@ public class Marketplace implements ICrudUsuario, ICrudVendedor {
     }
 
     @Override
-    public boolean modificarVendedor(String cedula, Vendedor vendedor) {
+    public boolean actualizarVendedor(String cedula, Vendedor vendedor) {
+        Vendedor vendedorExistente = buscarVendedor(cedula);
+
+        if (vendedorExistente != null) {
+            vendedorExistente.setNombre(vendedor.getNombre());
+            vendedorExistente.setApellido(vendedor.getApellido());
+
+            return true;
+        }
         return false;
     }
 
     @Override
+    public Vendedor buscarVendedor(String cedula) {
+        for (Vendedor vendedor : getListVendedores()) {
+            if (vendedor.getCedula().equals(cedula)) {
+                return vendedor;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean verificarVendedorExistente(String cedula) {
+        Vendedor vendedorExistente = null;
+        for (Vendedor vendedor : listVendedores) {
+            if (vendedor.getCedula().equals(cedula)) {
+                vendedorExistente = vendedor;
+                break;
+            }
+        }
+
+        if (vendedorExistente != null) {
+            return true;
+        }
         return false;
     }
 

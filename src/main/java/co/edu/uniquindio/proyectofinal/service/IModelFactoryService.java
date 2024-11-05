@@ -7,13 +7,13 @@ import co.edu.uniquindio.proyectofinal.model.Vendedor;
 import java.util.List;
 
 public interface IModelFactoryService {
-    List<UsuarioDto> getUsuariosDto();
+    List<UsuarioDto> obtenerUsuariosDto();
     boolean agregarUsuario(UsuarioDto usuarioDto);
     boolean actualizarUsuario(String username, UsuarioDto usuarioDto);
     boolean eliminarUsuario(String username);
     boolean buscarUsuario(String username);
 
-    List<VendedorDto> getVendedoresDto();
+    List<VendedorDto> obtenerVendedoresDto();
     boolean agregarVendedor(VendedorDto vendedorDto);
     boolean eliminarVendedor(String cedula);
     boolean actualizarVendedor(String cedula, VendedorDto vendedorDto);
