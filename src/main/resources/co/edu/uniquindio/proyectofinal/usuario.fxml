@@ -1,25 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="308.0" prefWidth="416.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinal.viewcontroller.UsuarioViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="635.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinal.viewcontroller.UsuarioViewController">
    <children>
-      <TabPane prefHeight="308.0" prefWidth="416.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Untitled Tab 1">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="319.0" prefWidth="316.0" />
-            </content>
-          </Tab>
-          <Tab text="Untitled Tab 2">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
+      <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="14.0" layoutY="14.0" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/logoCarrito.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="67.0" layoutY="22.0" text="Marketplace">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="144.0" fitWidth="137.0" layoutX="484.0" layoutY="14.0" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/perfil.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="477.0" layoutY="158.0" text="Nombre del vendedor">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="17.0" layoutY="127.0" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/logoPublicarProducto.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnPublicarProductos" layoutX="60.0" layoutY="132.0" mnemonicParsing="false" onAction="#onPublicarProductos" text="Publicar productos" />
+      <ImageView fitHeight="37.0" fitWidth="40.0" layoutX="14.0" layoutY="178.0" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/logoChats.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnChats" layoutX="60.0" layoutY="183.0" mnemonicParsing="false" onAction="#onChats" text="Chats" />
+      <ImageView fitHeight="27.0" fitWidth="40.0" layoutX="14.0" layoutY="234.0" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/logoContactos.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnContactos" layoutX="60.0" layoutY="235.0" mnemonicParsing="false" onAction="#onAgregarContactos" text="Contactos" />
+      <ImageView fitHeight="37.0" fitWidth="40.0" layoutX="14.0" layoutY="278.0" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/logoConfiguracion.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnConfiguracion" layoutX="60.0" layoutY="284.0" mnemonicParsing="false" onAction="#onConfigurarInformacion" text="Configuración" />
+      <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="14.0" layoutY="330.0" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/logoEstadisticas.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnEstadisticas" layoutX="60.0" layoutY="335.0" mnemonicParsing="false" onAction="#onVerEstadisticas" prefHeight="25.0" prefWidth="82.0" text="Estadísticas" />
+      <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="499.0" layoutY="410.0" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/logoSalir.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnCerrarSesion" layoutX="525.0" layoutY="410.0" mnemonicParsing="false" onAction="#onCerrarSesion" prefHeight="25.0" prefWidth="96.0" text="Cerrar Sesión" />
    </children>
 </AnchorPane>

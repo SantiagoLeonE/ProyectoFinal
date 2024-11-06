@@ -15,9 +15,9 @@ public class MarketplaceApplication extends Application {
     public void start(Stage loginStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MarketplaceApplication.class.getResource("login.fxml"));
         Parent root = fxmlLoader.load();
-        UsuarioViewController controller = fxmlLoader.getController();
+        UsuarioViewController viewController = fxmlLoader.getController();
 
-        controller.setPrimaryStage(loginStage);
+        viewController.setLoginStage(loginStage);
 
         Scene scene = new Scene(root);
         loginStage.setTitle("Marketplace Login");
