@@ -30,4 +30,8 @@ public class AdministradorBuilder {
     public Administrador build(String nombre, String apellido, String cedula, String direccion) {
         return new Administrador(nombre, apellido, cedula, direccion);
     }
+
+    public Administrador build() {
+        return new Administrador(nombre, apellido, cedula, direccion);
+    }
 }

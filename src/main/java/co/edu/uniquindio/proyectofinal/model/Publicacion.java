@@ -9,6 +9,9 @@ public class Publicacion {
     public List<Comentario> listComentarios = new ArrayList<>();
     public Producto producto;
 
+    public Publicacion(){
+    }
+
     public Publicacion(boolean like) {
         this.like = like;
     }

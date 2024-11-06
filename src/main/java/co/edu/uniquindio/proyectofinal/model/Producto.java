@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyectofinal.model;
 
+import co.edu.uniquindio.proyectofinal.model.builder.ProductoBuilder;
 import co.edu.uniquindio.proyectofinal.service.IPrototype;
 
 public class Producto implements IPrototype {
@@ -7,6 +8,7 @@ public class Producto implements IPrototype {
     public String nombre;
     public String categoria;
     public double precio;
+    public EstadoProducto estadoProducto;
     public Publicacion publicacion;
 
     public Producto() {
@@ -18,10 +20,11 @@ public class Producto implements IPrototype {
      * @param categoria {String} - La categoría del producto
      * @param precio {double} - El precio del producto
      */
-    public Producto(String nombre, String categoria, double precio) {
+    public Producto(String nombre, String categoria, double precio, EstadoProducto estadoProducto) {
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
+        this.estadoProducto = estadoProducto;
     }
 
     /**
@@ -103,5 +106,9 @@ public class Producto implements IPrototype {
      */
     public void setPublicacion(Publicacion publicacion) {
         this.publicacion = publicacion;
+    }
+
+    public static ProductoBuilder builder(){
+        return new ProductoBuilder();
     }
 }

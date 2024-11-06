@@ -1,10 +1,12 @@
 package co.edu.uniquindio.proyectofinal.model.builder;
 
+import co.edu.uniquindio.proyectofinal.model.EstadoProducto;
 import co.edu.uniquindio.proyectofinal.model.Producto;
 
 public class ProductoBuilder {
     protected String nombre;
     protected String categoria;
+    protected EstadoProducto estadoProducto;
     protected double precio;
 
     /**
@@ -38,10 +40,20 @@ public class ProductoBuilder {
     }
 
     /**
+     * Método builder para agregar el estado al producto
+     * @param estadoProducto {enum} - El estado del producto a crear
+     * @return {Object} - Un objeto con el estado del producto
+     */
+    public ProductoBuilder estadoProducto(EstadoProducto estadoProducto) {
+        this.estadoProducto = estadoProducto;
+        return this;
+    }
+
+    /**
      * Método build para crear el producto con diferentes estructuras
      * @return {Object} - Un objeto con los atributos determinados de un producto
      */
     public Producto build() {
-        return new Producto(nombre, categoria, precio);
+        return new Producto(nombre, categoria, precio, estadoProducto);
     }
 }
