@@ -17,10 +17,18 @@ import java.io.IOException;
 
 public class UsuarioViewController {
     private final UsuarioController usuarioController = new UsuarioController();
-    public Stage loginStage;
+    public Stage loginStage = new Stage();
+    public Stage userStage = new Stage();
+
+    public UsuarioViewController()  {
+    }
 
     public void setLoginStage(Stage loginStage) {
         this.loginStage = loginStage;
+    }
+
+    public void setUserStage(Stage userStage) {
+        this.userStage = userStage;
     }
 
     @FXML
@@ -95,48 +103,66 @@ public class UsuarioViewController {
     }
 
     @FXML
-    void onCerrarSesion(ActionEvent event) {
-
+    void onCerrarSesion(ActionEvent event) throws IOException {
+        cerrarVentanaVendedor();
     }
 
     public void checkBox() {
-        if(userCheckBox.isSelected() && adminCheckBox.isSelected()) {
+        if (userCheckBox.isSelected() && adminCheckBox.isSelected()) {
             System.out.println("No se pueden seleccionar las dos opciones al tiempo");
-        }
-        else if(userCheckBox.isSelected()) {
+        } else if (userCheckBox.isSelected()) {
             System.out.println("Usuario");
-        }
-        else if(adminCheckBox.isSelected()) {
+        } else if (adminCheckBox.isSelected()) {
             System.out.println("Administrador");
-        }
-        else {
+        } else {
             System.out.println("No hay una opción seleccionada");
         }
     }
 
     private void buscarUsuario() {
-        if(usuarioController.buscarUsuario(txtUsername.getText())) {
+        if (usuarioController.buscarUsuario(txtUsername.getText())) {
             try {
                 abrirVentanaVendedor();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             System.out.println("Usuario no encontrado");
         }
     }
 
     private void abrirVentanaVendedor() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MarketplaceApplication.class.getResource("usuario.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage userStage = new Stage();
+        Parent root = fxmlLoader.load();
+        UsuarioViewController viewController = fxmlLoader.getController();
+
+        viewController.setLoginStage(userStage);
+
+        Scene scene = new Scene(root);
         userStage.setTitle("Vendedor");
         userStage.setScene(scene);
         userStage.show();
         loginStage.close();
     }
 
+    private void cerrarVentanaVendedor() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MarketplaceApplication.class.getResource("login.fxml"));
+        Parent root = fxmlLoader.load();
+        UsuarioViewController viewController = fxmlLoader.getController();
+
+        viewController.setUserStage(loginStage);
+
+        Scene scene = new Scene(root);
+
+        loginStage.setTitle("Login");
+        loginStage.setScene(scene);
+        loginStage.show();
+        userStage.close();
+    }
 }
+
+
+
+
 
 
