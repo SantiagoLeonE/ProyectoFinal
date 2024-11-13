@@ -19,6 +19,7 @@ public class UsuarioViewController {
     private final UsuarioController usuarioController = new UsuarioController();
     public Stage loginStage = new Stage();
     public Stage userStage = new Stage();
+    public Stage cuentaNuevaStage = new Stage();
 
     public UsuarioViewController()  {
     }
@@ -29,6 +30,10 @@ public class UsuarioViewController {
 
     public void setUserStage(Stage userStage) {
         this.userStage = userStage;
+    }
+
+    public void setCuentaNuevaStage(Stage cuentaNuevaStage) {
+        this.cuentaNuevaStage = cuentaNuevaStage;
     }
 
     @FXML
@@ -56,10 +61,22 @@ public class UsuarioViewController {
     private Button btnCerrarSesion;
 
     @FXML
+    private TextField txtUsername;
+
+    @FXML
     private PasswordField txtPassword;
 
     @FXML
-    private TextField txtUsername;
+    private TextField txtNombre;
+
+    @FXML
+    private TextField txtApellidos;
+
+    @FXML
+    private TextField txtIdentificacion;
+
+    @FXML
+    private TextField txtDireccion;
 
     @FXML
     private CheckBox userCheckBox;
@@ -73,8 +90,13 @@ public class UsuarioViewController {
     }
 
     @FXML
-    void onCrearCuenta(ActionEvent event) {
-        checkBox();
+    void onAbrirCrearCuenta(ActionEvent event) throws IOException {
+        abrirVentanaCrearCuenta();
+    }
+
+    @FXML
+    void onCrearCuenta() {
+
     }
 
     @FXML
@@ -158,6 +180,20 @@ public class UsuarioViewController {
         loginStage.setScene(scene);
         loginStage.show();
         userStage.close();
+    }
+
+    private void abrirVentanaCrearCuenta() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MarketplaceApplication.class.getResource("crearCuenta.fxml"));
+        Parent root = fxmlLoader.load();
+        UsuarioViewController viewController = fxmlLoader.getController();
+
+        viewController.setLoginStage(cuentaNuevaStage);
+
+        Scene scene = new Scene(root);
+        cuentaNuevaStage.setTitle("Crear cuenta");
+        cuentaNuevaStage.setScene(scene);
+        cuentaNuevaStage.show();
+        loginStage.close();
     }
 }
 
