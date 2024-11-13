@@ -1,9 +1,18 @@
 package co.edu.uniquindio.proyectofinal.model;
 
 import co.edu.uniquindio.proyectofinal.model.builder.ProductoBuilder;
+import co.edu.uniquindio.proyectofinal.model.composite.ComponenteProducto;
 import co.edu.uniquindio.proyectofinal.service.IPrototype;
+import co.edu.uniquindio.proyectofinal.service.Observer;
+import co.edu.uniquindio.proyectofinal.service.Subject;
 
-public class Producto implements IPrototype {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Producto extends ComponenteProducto implements IPrototype, Subject {
+
+    private List<Observer> observers = new ArrayList<>();
+    private String news;
 
     public String nombre;
     public String categoria;
@@ -110,5 +119,32 @@ public class Producto implements IPrototype {
 
     public static ProductoBuilder builder(){
         return new ProductoBuilder();
+    }
+
+    @Override
+    public void mostrar() {
+        System.out.println("Nombre: " + nombre + ", Categoria: " + categoria + ", Precio: " + precio + ", Estado: " + estadoProducto);
+    }
+
+    @Override
+    public void registrarObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void eliminarObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notificarObservers() {
+        for (Observer observer : observers) {
+            observer.update(news);
+        }
+    }
+
+    public void setNews(String news) {
+        this.news = news;
+        notificarObservers();
     }
 }

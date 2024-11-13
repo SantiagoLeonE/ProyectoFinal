@@ -3,6 +3,7 @@ module co.edu.uniquindio.proyectofinal {
     requires javafx.fxml;
     requires javafx.graphics;
     requires javafx.base;
+    requires java.desktop;
 
     opens co.edu.uniquindio.proyectofinal to javafx.fxml;
     exports co.edu.uniquindio.proyectofinal;

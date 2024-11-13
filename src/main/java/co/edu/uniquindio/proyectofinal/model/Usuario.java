@@ -1,8 +1,12 @@
 package co.edu.uniquindio.proyectofinal.model;
 
 import co.edu.uniquindio.proyectofinal.model.builder.UsuarioBuilder;
+import co.edu.uniquindio.proyectofinal.service.Observer;
 
-public class Usuario {
+public class Usuario implements Observer {
+
+    Producto producto;
+
     public String username;
     public String password;
 
@@ -39,5 +43,14 @@ public class Usuario {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println("Producto" + producto + " recibido news: " + message);
     }
 }
